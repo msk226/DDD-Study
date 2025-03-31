@@ -2,6 +2,7 @@ package stduy.ddd.application;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.user.UserCommand.SignUp;
 import stduy.ddd.application.user.UserSignUpUseCase;
@@ -12,6 +13,7 @@ import stduy.ddd.domain.user.vo.Nickname;
 import stduy.ddd.domain.user.vo.Password;
 import stduy.ddd.domain.user.vo.PhoneNumber;
 
+@Service
 @Transactional
 @RequiredArgsConstructor
 public class UserSignUpService implements UserSignUpUseCase {

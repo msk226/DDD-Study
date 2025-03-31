@@ -1,6 +1,6 @@
-package stduy.ddd.application.usecase;
+package stduy.ddd.application.question.usecase;
 
-import stduy.ddd.application.QuestionCommand;
+import stduy.ddd.application.question.QuestionCommand;
 
 public interface QuestionCreateUseCase {
 

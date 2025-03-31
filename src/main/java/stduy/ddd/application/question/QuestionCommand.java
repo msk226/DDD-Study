@@ -1,4 +1,4 @@
-package stduy.ddd.application;
+package stduy.ddd.application.question;
 
 public class QuestionCommand {
 

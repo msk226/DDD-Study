@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 public class PhoneNumber {
 
     @Column(nullable = false, unique = true, length = 11)
-    private String value;
+    private String phoneNumber;
 
     public PhoneNumber (String phoneNumber) {
         if (phoneNumber == null || !phoneNumber.matches("^\\d{10,11}$")) {
             throw new IllegalArgumentException("전화번호는 10~11자리 숫자만 입력 가능합니다.");
         }
-        this.value = phoneNumber;
+        this.phoneNumber = phoneNumber;
     }
 }

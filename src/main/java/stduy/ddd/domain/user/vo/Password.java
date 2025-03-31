@@ -13,13 +13,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class Password {
 
     @Column(nullable = false)
-    private String value;
+    private String password;
 
     public Password (String password, PasswordEncoder encoder) {
         if (password.length() < 8 || !password.matches(".*[!@#$%^&*()].*")) {
             throw new IllegalArgumentException("비밀번호는 8자 이상, 특수문자를 포함해야 합니다.");
         }
 
-        this.value = encoder.encode(password);
+        this.password = encoder.encode(password);
     }
 }

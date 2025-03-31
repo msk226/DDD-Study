@@ -3,6 +3,8 @@ package stduy.ddd.domain.user;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
@@ -18,7 +20,7 @@ import stduy.ddd.domain.user.vo.PhoneNumber;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Embedded

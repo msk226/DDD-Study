@@ -58,4 +58,13 @@ public class Question {
         this.title = title;
         this.content = content;
     }
+
+    public void delete(Long currentUserId) {
+        validateWriter(currentUserId);
+
+        if (this.isDeleted) {
+            throw new IllegalArgumentException("이미 삭제 처리 된 질문입니다.");
+        }
+        this.isDeleted = true;
+    }
 }

@@ -1,4 +1,4 @@
-package stduy.ddd.application.user;
+package stduy.ddd.application.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

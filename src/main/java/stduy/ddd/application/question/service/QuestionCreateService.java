@@ -1,4 +1,4 @@
-package stduy.ddd.application.question;
+package stduy.ddd.application.question.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

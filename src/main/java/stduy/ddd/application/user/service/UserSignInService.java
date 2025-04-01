@@ -1,4 +1,4 @@
-package stduy.ddd.application.user;
+package stduy.ddd.application.user.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,7 +11,6 @@ import stduy.ddd.domain.user.UserRepository;
 import stduy.ddd.domain.user.vo.Email;
 import stduy.ddd.infrastructure.auth.JwtTokenProvider;
 import stduy.ddd.presentation.user.UserResponse;
-import stduy.ddd.presentation.user.UserResponse.UserSignIn;
 
 @Service
 @Transactional

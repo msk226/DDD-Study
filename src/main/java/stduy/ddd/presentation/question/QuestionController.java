@@ -19,10 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import stduy.ddd.application.question.QuestionCommand;
 import stduy.ddd.application.question.QuestionCommand.Delete;
-import stduy.ddd.application.question.usecase.QuestionCreateUseCase;
-import stduy.ddd.application.question.usecase.QuestionDeleteUseCase;
-import stduy.ddd.application.question.usecase.QuestionFindUseCase;
-import stduy.ddd.application.question.usecase.QuestionUpdateUseCase;
+import stduy.ddd.application.question.usecase.command.QuestionCreateUseCase;
+import stduy.ddd.application.question.usecase.command.QuestionDeleteUseCase;
+import stduy.ddd.application.question.usecase.query.QuestionFindUseCase;
+import stduy.ddd.application.question.usecase.command.QuestionUpdateUseCase;
 import stduy.ddd.domain.user.UserPrincipal;
 
 @RestController

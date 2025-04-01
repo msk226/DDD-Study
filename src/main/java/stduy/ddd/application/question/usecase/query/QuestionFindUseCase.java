@@ -1,8 +1,7 @@
-package stduy.ddd.application.question.usecase;
+package stduy.ddd.application.question.usecase.query;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import stduy.ddd.presentation.question.QuestionResponse;
 import stduy.ddd.presentation.question.QuestionResponse.QuestionSummary;
 
 public interface QuestionFindUseCase {

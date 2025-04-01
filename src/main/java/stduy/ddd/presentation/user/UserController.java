@@ -1,4 +1,4 @@
-package stduy.ddd.presentation;
+package stduy.ddd.presentation.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import stduy.ddd.application.user.UserCommand;
 import stduy.ddd.application.user.UserCommand.SignUp;
-import stduy.ddd.application.user.UserSignUpUseCase;
+import stduy.ddd.application.user.usecase.UserSignUpUseCase;
 
 @RestController
 @RequiredArgsConstructor

@@ -1,4 +1,4 @@
-package stduy.ddd.application.user;
+package stduy.ddd.application.user.usecase;
 
 import stduy.ddd.application.user.UserCommand.SignUp;
 

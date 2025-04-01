@@ -1,4 +1,4 @@
-package stduy.ddd.presentation;
+package stduy.ddd.presentation.user;
 
 public class UserRequest {
 

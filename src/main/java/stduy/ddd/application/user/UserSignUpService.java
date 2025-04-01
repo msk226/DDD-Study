@@ -1,11 +1,11 @@
-package stduy.ddd.application;
+package stduy.ddd.application.user;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.user.UserCommand.SignUp;
-import stduy.ddd.application.user.UserSignUpUseCase;
+import stduy.ddd.application.user.usecase.UserSignUpUseCase;
 import stduy.ddd.domain.user.User;
 import stduy.ddd.domain.user.UserRepository;
 import stduy.ddd.domain.user.vo.Email;

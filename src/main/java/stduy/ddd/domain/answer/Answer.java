@@ -60,4 +60,14 @@ public class Answer {
         this.content = content;
     }
 
+    public void deleteAnswer(Long currentUserId) {
+        validateWriter(currentUserId);
+
+        if (this.isDeleted) {
+            throw new IllegalArgumentException("이미 삭제 처리 된 답변입니다.");
+        }
+
+        this.isDeleted = true;
+    }
+
 }

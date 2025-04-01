@@ -1,4 +1,4 @@
-package stduy.ddd.application.question.usecase;
+package stduy.ddd.application.question.usecase.command;
 
 import stduy.ddd.application.question.QuestionCommand;
 

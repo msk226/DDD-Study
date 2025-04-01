@@ -7,5 +7,7 @@ import stduy.ddd.presentation.question.QuestionResponse.QuestionSummary;
 
 public interface QuestionQueryRepository {
     Page<QuestionSummary> findAllVisibleByKeyword(Pageable pageable, String keyword);
+
+    QuestionSummary findQuestionDetailById(Long questionId);
 }
 

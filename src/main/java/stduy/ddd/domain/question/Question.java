@@ -48,4 +48,14 @@ public class Question {
         question.createdAt = LocalDateTime.now();
         return question;
     }
+
+    public void validateWriter(Long userId) {
+        if (!this.writer.getId().equals(userId)) {
+            throw new IllegalArgumentException("해당 질문을 수정할 권한이 없습니다.");
+        }
+    }
+    public void updateQuestion(Title title, Content content) {
+        this.title = title;
+        this.content = content;
+    }
 }

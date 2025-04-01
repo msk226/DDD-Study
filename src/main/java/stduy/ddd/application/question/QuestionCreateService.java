@@ -3,7 +3,7 @@ package stduy.ddd.application.question;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import stduy.ddd.application.question.QuestionCommand.create;
+import stduy.ddd.application.question.QuestionCommand.Create;
 import stduy.ddd.application.question.usecase.QuestionCreateUseCase;
 import stduy.ddd.domain.question.Question;
 import stduy.ddd.domain.question.QuestionRepository;
@@ -21,7 +21,7 @@ public class QuestionCreateService implements QuestionCreateUseCase {
     private final UserRepository userRepository;
 
     @Override
-    public Long createQuestion(create command, Long userId) {
+    public Long createQuestion(Create command, Long userId) {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 회원입니다."));
 

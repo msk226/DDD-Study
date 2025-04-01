@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import stduy.ddd.application.answer.AnswerCommand;
 import stduy.ddd.application.answer.usecase.AnswerCreateUseCase;
+import stduy.ddd.application.answer.usecase.AnswerDeleteUseCase;
 import stduy.ddd.application.answer.usecase.AnswerUpdateUseCase;
 import stduy.ddd.domain.user.UserPrincipal;
 
@@ -22,6 +24,7 @@ public class AnswerController {
 
     private final AnswerCreateUseCase answerCreateUseCase;
     private final AnswerUpdateUseCase answerUpdateUseCase;
+    private final AnswerDeleteUseCase answerDeleteUseCase;
 
     @PostMapping
     public ResponseEntity<?> createAnswer(@RequestBody AnswerRequest.Create request,
@@ -32,12 +35,21 @@ public class AnswerController {
     }
 
 
-    @PatchMapping("{answerId}")
+    @PatchMapping("/{answerId}")
     public ResponseEntity<?> updateAnswer(@RequestBody AnswerRequest.Update request,
                                           @PathVariable Long answerId,
                                           @AuthenticationPrincipal UserPrincipal principal) {
         AnswerCommand.Update command = new AnswerCommand.Update(request.content(), principal.getId(), answerId);
         Long updatedAnswerId = answerUpdateUseCase.updateAnswer(command);
         return ResponseEntity.status(HttpStatus.OK).body(updatedAnswerId);
+    }
+
+    @DeleteMapping("/{answerId}")
+    public ResponseEntity<?> deleteAnswer(@PathVariable Long answerId,
+                                          @AuthenticationPrincipal UserPrincipal principal) {
+        AnswerCommand.Delete command = new AnswerCommand.Delete(principal.getId(), answerId);
+        answerDeleteUseCase.deleteAnswer(command);
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+
     }
 }

@@ -2,5 +2,5 @@ package stduy.ddd.presentation.user;
 
 public class UserResponse {
 
-    public record UserSignIn(Long userId, String nickname){}
+    public record UserSignIn(Long userId, String nickname, String accessToken){}
 }

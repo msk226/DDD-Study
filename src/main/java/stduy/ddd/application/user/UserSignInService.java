@@ -9,6 +9,7 @@ import stduy.ddd.application.user.usecase.UserSignInUseCase;
 import stduy.ddd.domain.user.User;
 import stduy.ddd.domain.user.UserRepository;
 import stduy.ddd.domain.user.vo.Email;
+import stduy.ddd.infrastructure.auth.JwtTokenProvider;
 import stduy.ddd.presentation.user.UserResponse;
 import stduy.ddd.presentation.user.UserResponse.UserSignIn;
 
@@ -18,6 +19,7 @@ import stduy.ddd.presentation.user.UserResponse.UserSignIn;
 public class UserSignInService implements UserSignInUseCase {
 
     private final UserRepository userRepository;
+    private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
 
     @Override
@@ -34,7 +36,8 @@ public class UserSignInService implements UserSignInUseCase {
         // 3. 응답 객체 생성 (토큰 미포함 버전)
         return new UserResponse.UserSignIn(
                 user.getId(),
-                user.getNickname().getNickname()
+                user.getNickname().getNickname(),
+                jwtTokenProvider.generateToken(user.getId())
         );
     }
 }

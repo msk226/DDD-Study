@@ -5,6 +5,7 @@ import static stduy.ddd.domain.questionLike.QQuestionLike.*;
 import static stduy.ddd.domain.user.QUser.*;
 
 import com.querydsl.core.BooleanBuilder;
+import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import stduy.ddd.domain.question.QuestionQueryRepository;
 import stduy.ddd.domain.questionLike.QQuestionLike;
 import stduy.ddd.domain.user.QUser;
 import stduy.ddd.presentation.question.QQuestionResponse_QuestionSummary;
+import stduy.ddd.presentation.question.QuestionResponse;
 import stduy.ddd.presentation.question.QuestionResponse.QuestionSummary;
 
 @Repository
@@ -64,5 +66,26 @@ public class QuestionQueryRepositoryImpl implements QuestionQueryRepository {
 
         return new PageImpl<>(content, pageable, total != null ? total : 0);
     }
+
+    @Override
+    public QuestionSummary findQuestionDetailById(Long questionId) {
+
+        return query
+                .select(Projections.constructor(
+                        QuestionSummary.class,
+                        question.id,
+                        question.title.title,
+                        question.content.content,
+                        user.nickname.nickname,
+                        question.createdAt,
+                        questionLike.countDistinct()
+                ))
+                .from(question)
+                .leftJoin(question.writer, user)
+                .leftJoin(questionLike).on(questionLike.question.eq(question))
+                .where(question.id.eq(questionId), question.isDeleted.isFalse())
+                .fetchOne();
+    }
+
 
 }

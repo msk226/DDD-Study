@@ -49,4 +49,15 @@ public class Answer {
         return new Answer(content, writer, question);
     }
 
+    public void validateWriter(Long currentUserId) {
+        if (!this.writer.getId().equals(currentUserId)) {
+            throw new IllegalArgumentException("해당 답변을 수정할 권한이 없습니다.");
+        }
+    }
+
+    public void updateContent(Content content, Long currentUserId) {
+        validateWriter(currentUserId);
+        this.content = content;
+    }
+
 }

@@ -1,5 +1,6 @@
 package stduy.ddd.infrastructure.user;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import stduy.ddd.domain.user.User;
@@ -16,6 +17,11 @@ public class JpaUserRepository implements UserRepository {
     @Override
     public User save(User user) {
         return repository.save(user);
+    }
+
+    @Override
+    public Optional<User> findByEmail(Email email) {
+        return repository.findByEmail(email);
     }
 
     @Override

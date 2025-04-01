@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import stduy.ddd.domain.question.Question;
 import stduy.ddd.domain.question.QuestionRepository;
+import stduy.ddd.presentation.question.QuestionResponse.QuestionSummary;
 
 @Repository
 @RequiredArgsConstructor
@@ -22,10 +23,5 @@ public class JPAQuestionRepository implements QuestionRepository {
     @Override
     public Optional<Question> findById(Long id) {
         return repository.findById(id);
-    }
-
-    @Override
-    public Page<Question> findAllWithCondition(Pageable pageable, String keyword) {
-        return repository.findAllByTitleContaining(pageable, keyword);
     }
 }

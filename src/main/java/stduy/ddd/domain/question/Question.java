@@ -3,7 +3,10 @@ package stduy.ddd.domain.question;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import lombok.Getter;
@@ -17,7 +20,7 @@ import stduy.ddd.domain.user.User;
 @NoArgsConstructor
 public class Question {
 
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Embedded
@@ -27,6 +30,7 @@ public class Question {
     private Content content;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "writer_id")
     private User writer;
 
     private boolean isDeleted;

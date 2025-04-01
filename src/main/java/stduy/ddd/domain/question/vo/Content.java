@@ -12,12 +12,12 @@ import lombok.NoArgsConstructor;
 public class Content {
 
     @Column(nullable = false, length = 300)
-    private String value;
+    private String content;
 
     public Content (String content) {
         if (content == null || content.length() > 300) {
             throw new IllegalArgumentException("제목 또는 내용의 형식이 잘못되었습니다.");
         }
-        this.value = content;
+        this.content = content;
     }
 }

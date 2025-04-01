@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import stduy.ddd.application.user.UserCommand;
+import stduy.ddd.application.user.UserCommand.SignIn;
 import stduy.ddd.application.user.UserCommand.SignUp;
+import stduy.ddd.application.user.usecase.UserSignInUseCase;
 import stduy.ddd.application.user.usecase.UserSignUpUseCase;
 
 @RestController
@@ -17,6 +19,7 @@ import stduy.ddd.application.user.usecase.UserSignUpUseCase;
 public class UserController {
 
     private final UserSignUpUseCase userSignUpUseCase;
+    private final UserSignInUseCase userSignInUseCase;
 
     @PostMapping("/sign-up")
     public ResponseEntity<Long> signUp(@RequestBody UserRequest.SignUp request) {
@@ -27,4 +30,14 @@ public class UserController {
         Long userId = userSignUpUseCase.create(command);
         return ResponseEntity.status(HttpStatus.CREATED).body(userId);
     }
+
+    @PostMapping("/sign-in")
+    public ResponseEntity<UserResponse.UserSignIn> signIn(@RequestBody UserRequest.SignIn request) {
+        UserCommand.SignIn command = new SignIn(
+                request.email(), request.password());
+
+         UserResponse.UserSignIn signIn = userSignInUseCase.signIn(command);
+        return ResponseEntity.status(HttpStatus.OK).body(signIn);
+    }
+
 }

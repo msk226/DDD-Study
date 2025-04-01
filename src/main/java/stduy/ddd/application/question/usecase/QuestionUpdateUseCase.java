@@ -4,5 +4,5 @@ import stduy.ddd.application.question.QuestionCommand;
 
 public interface QuestionUpdateUseCase {
 
-    Long updateQuestion(QuestionCommand.update command, Long userId);
+    Long updateQuestion(QuestionCommand.Update command, Long userId);
 }

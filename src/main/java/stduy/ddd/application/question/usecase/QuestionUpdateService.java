@@ -3,7 +3,7 @@ package stduy.ddd.application.question.usecase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import stduy.ddd.application.question.QuestionCommand.update;
+import stduy.ddd.application.question.QuestionCommand.Update;
 import stduy.ddd.domain.question.Question;
 import stduy.ddd.domain.question.QuestionRepository;
 import stduy.ddd.domain.question.vo.Content;
@@ -19,7 +19,7 @@ public class QuestionUpdateService implements QuestionUpdateUseCase{
     private final QuestionRepository questionRepository;
 
     @Override
-    public Long updateQuestion(update command, Long userId) {
+    public Long updateQuestion(Update command, Long userId) {
         Question question = questionRepository.findById(command.questionId())
                 .orElseThrow(() -> new IllegalArgumentException("질문이 존재하지 않습니다."));
 

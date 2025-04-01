@@ -1,5 +1,6 @@
 package stduy.ddd.infrastructure.answer;
 
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import stduy.ddd.domain.answer.Answer;
@@ -14,5 +15,10 @@ public class JPAAnswerRepository implements AnswerRepository {
     @Override
     public Answer save(Answer answer) {
         return repository.save(answer);
+    }
+
+    @Override
+    public Optional<Answer> findById(Long answerId) {
+        return repository.findById(answerId);
     }
 }

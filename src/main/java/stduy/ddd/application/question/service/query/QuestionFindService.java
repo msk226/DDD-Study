@@ -21,4 +21,9 @@ public class QuestionFindService implements QuestionFindUseCase {
     public Page<QuestionSummary> getQuestions(Pageable pageable, String keyword) {
         return questionRepository.findAllVisibleByKeyword(pageable, keyword);
     }
+
+    @Override
+    public QuestionSummary getQuestion(Long questionId) {
+        return questionRepository.findQuestionDetailById(questionId);
+    }
 }

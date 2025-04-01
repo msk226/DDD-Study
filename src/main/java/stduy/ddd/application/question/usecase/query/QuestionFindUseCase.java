@@ -8,4 +8,6 @@ public interface QuestionFindUseCase {
 
     Page<QuestionSummary> getQuestions(Pageable pageable, String keyword);
 
+    QuestionSummary getQuestion(Long questionId);
+
 }

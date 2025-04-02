@@ -84,7 +84,7 @@ feat[UC-04]: Question 페이징 조회 유즈 케이스 엔드포인트 작성
 
 ## 🛠️ 시행 착오
 
-`DDD_APPLICATION_REVIEW.md` 파일을 참고해주세요.
+[`DDD_APPLICATION_REVIEW.md`](./DDD_APPLICATION_REVIEW.md) 파일을 참고해주세요.
 
 ---
 ## 💬 정리

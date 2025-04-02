@@ -6,6 +6,4 @@ public class QuestionRequest {
 
     public record Update(String title, String content) {}
 
-    public record Delete(Long questionId) {}
-
 }

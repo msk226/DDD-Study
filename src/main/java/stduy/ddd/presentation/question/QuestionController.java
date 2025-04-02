@@ -53,10 +53,10 @@ public class QuestionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(new Update(updatedQuestionId));
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteQuestion(@RequestBody QuestionRequest.Delete request,
+    @DeleteMapping("/{questionId}")
+    public ResponseEntity<?> deleteQuestion(@PathVariable Long questionId,
                                             @AuthenticationPrincipal UserPrincipal principal) {
-        QuestionCommand.Delete command = new Delete(request.questionId(), principal.getId());
+        QuestionCommand.Delete command = new Delete(questionId, principal.getId());
         questionDeleteUseCase.deleteQuestion(command);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }

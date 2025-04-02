@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.questionLike.QuestionLikeCommand;
 import stduy.ddd.application.questionLike.usecase.QuestionLikeUseCase;
 import stduy.ddd.domain.question.Question;
-import stduy.ddd.domain.question.QuestionRepository;
+import stduy.ddd.domain.question.repository.QuestionRepository;
 import stduy.ddd.domain.questionLike.QuestionLike;
 import stduy.ddd.domain.questionLike.QuestionLikeRepository;
 import stduy.ddd.domain.user.User;

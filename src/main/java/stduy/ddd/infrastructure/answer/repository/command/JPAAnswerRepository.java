@@ -1,4 +1,4 @@
-package stduy.ddd.infrastructure.answer;
+package stduy.ddd.infrastructure.answer.repository.command;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

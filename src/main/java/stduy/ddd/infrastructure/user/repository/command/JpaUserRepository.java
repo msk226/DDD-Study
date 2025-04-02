@@ -1,4 +1,4 @@
-package stduy.ddd.infrastructure.user;
+package stduy.ddd.infrastructure.user.repository.command;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

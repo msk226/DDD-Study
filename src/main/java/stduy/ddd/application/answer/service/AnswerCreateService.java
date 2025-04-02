@@ -9,7 +9,7 @@ import stduy.ddd.domain.answer.Answer;
 import stduy.ddd.domain.answer.AnswerRepository;
 import stduy.ddd.domain.answer.vo.Content;
 import stduy.ddd.domain.question.Question;
-import stduy.ddd.domain.question.QuestionRepository;
+import stduy.ddd.domain.question.repository.QuestionRepository;
 import stduy.ddd.domain.user.User;
 import stduy.ddd.domain.user.UserRepository;
 

@@ -1,13 +1,10 @@
-package stduy.ddd.infrastructure.question;
+package stduy.ddd.infrastructure.question.repository.command;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import stduy.ddd.domain.question.Question;
-import stduy.ddd.domain.question.QuestionRepository;
-import stduy.ddd.presentation.question.QuestionResponse.QuestionSummary;
+import stduy.ddd.domain.question.repository.QuestionRepository;
 
 @Repository
 @RequiredArgsConstructor

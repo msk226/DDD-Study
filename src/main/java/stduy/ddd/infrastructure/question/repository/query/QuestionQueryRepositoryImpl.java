@@ -1,4 +1,4 @@
-package stduy.ddd.infrastructure.question;
+package stduy.ddd.infrastructure.question.repository.query;
 
 import static stduy.ddd.domain.question.QQuestion.*;
 import static stduy.ddd.domain.questionLike.QQuestionLike.*;
@@ -13,12 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
-import stduy.ddd.domain.question.QQuestion;
-import stduy.ddd.domain.question.QuestionQueryRepository;
-import stduy.ddd.domain.questionLike.QQuestionLike;
-import stduy.ddd.domain.user.QUser;
+import stduy.ddd.domain.question.repository.QuestionQueryRepository;
 import stduy.ddd.presentation.question.QQuestionResponse_QuestionSummary;
-import stduy.ddd.presentation.question.QuestionResponse;
 import stduy.ddd.presentation.question.QuestionResponse.QuestionSummary;
 
 @Repository

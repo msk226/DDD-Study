@@ -1,4 +1,4 @@
-package stduy.ddd.infrastructure.question;
+package stduy.ddd.infrastructure.question.repository.command;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

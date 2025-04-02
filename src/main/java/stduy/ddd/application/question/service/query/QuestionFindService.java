@@ -6,7 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.question.usecase.query.QuestionFindUseCase;
-import stduy.ddd.domain.question.QuestionQueryRepository;
+import stduy.ddd.domain.question.repository.QuestionQueryRepository;
 import stduy.ddd.presentation.question.QuestionResponse.QuestionSummary;
 
 @Service

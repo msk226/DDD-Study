@@ -68,7 +68,7 @@ public class QuestionController {
         return ResponseEntity.status(HttpStatus.OK).body(questions) ;
     }
 
-    @GetMapping("{questionId}")
+    @GetMapping("/{questionId}")
     public ResponseEntity<QuestionSummary> findQuestion(@PathVariable Long questionId) {
         QuestionSummary questionSummary = questionFindUseCase.getQuestion(questionId);
         return ResponseEntity.status(HttpStatus.OK).body(questionSummary);

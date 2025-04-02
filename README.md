@@ -6,6 +6,8 @@
 작성한 유즈케이스는 [`UseCase.md`](./UseCase.md) 파일을, 회고록은 
 [`DDD_APPLICATION_REVIEW.md`](./DDD_APPLICATION_REVIEW.md) 파일을 참고해주세요. 
 
+피드백은 환영입니다. `kminseok5167@gmail.com`으로 남겨주세요.
+
 ---
 
 ## 📚 목차

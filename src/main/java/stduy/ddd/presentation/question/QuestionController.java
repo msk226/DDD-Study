@@ -44,12 +44,13 @@ public class QuestionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(new Create(questionId));
     }
 
-    @PatchMapping("")
-    public ResponseEntity<Update> updateQuestion(@RequestBody QuestionRequest.Update request,
+    @PatchMapping("/{questionId}")
+    public ResponseEntity<Update> updateQuestion(@PathVariable Long questionId,
+                                                 @RequestBody QuestionRequest.Update request,
                                                  @AuthenticationPrincipal UserPrincipal principal) {
-        QuestionCommand.Update command = new QuestionCommand.Update(request.questionId(), request.title(), request.content());
-        Long questionId = questionUpdateUseCase.updateQuestion(command, principal.getId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Update(questionId));
+        QuestionCommand.Update command = new QuestionCommand.Update(questionId, request.title(), request.content());
+        Long updatedQuestionId = questionUpdateUseCase.updateQuestion(command, principal.getId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Update(updatedQuestionId));
     }
 
     @DeleteMapping

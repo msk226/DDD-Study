@@ -1,6 +1,6 @@
 # DDD 기반 Q&A 플랫폼 설계 및 구현
 
-본 프로젝트는 이전에 진행했던 프로젝트인 QP를 기반으로,  
+본 프로젝트는 이전에 진행했던 프로젝트인 [QP](https://github.com/msk226/QP_BACKEND)를 기반으로,  
 **도메인 주도 설계(Domain-Driven Design, DDD)** 를 적용하여 구조화된 백엔드 아키텍처를 실습하고 구현한 결과입니다.
 
 작성한 유즈케이스는 [`UseCase.md`](./UseCase.md) 파일을, 회고록은 

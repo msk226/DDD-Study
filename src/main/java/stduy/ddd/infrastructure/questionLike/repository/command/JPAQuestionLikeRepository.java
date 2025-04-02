@@ -1,4 +1,4 @@
-package stduy.ddd.infrastructure.questionLike;
+package stduy.ddd.infrastructure.questionLike.repository.command;
 
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;

@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.question.QuestionCommand.Create;
 import stduy.ddd.application.question.usecase.command.QuestionCreateUseCase;
 import stduy.ddd.domain.question.Question;
-import stduy.ddd.domain.question.QuestionRepository;
+import stduy.ddd.domain.question.repository.QuestionRepository;
 import stduy.ddd.domain.question.vo.Content;
 import stduy.ddd.domain.question.vo.Title;
 import stduy.ddd.domain.user.User;

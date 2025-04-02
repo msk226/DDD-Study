@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.question.QuestionCommand;
 import stduy.ddd.application.question.usecase.command.QuestionDeleteUseCase;
 import stduy.ddd.domain.question.Question;
-import stduy.ddd.domain.question.QuestionRepository;
+import stduy.ddd.domain.question.repository.QuestionRepository;
 
 @Service
 @Transactional

@@ -44,18 +44,19 @@ public class QuestionController {
         return ResponseEntity.status(HttpStatus.CREATED).body(new Create(questionId));
     }
 
-    @PatchMapping("")
-    public ResponseEntity<Update> updateQuestion(@RequestBody QuestionRequest.Update request,
+    @PatchMapping("/{questionId}")
+    public ResponseEntity<Update> updateQuestion(@PathVariable Long questionId,
+                                                 @RequestBody QuestionRequest.Update request,
                                                  @AuthenticationPrincipal UserPrincipal principal) {
-        QuestionCommand.Update command = new QuestionCommand.Update(request.questionId(), request.title(), request.content());
-        Long questionId = questionUpdateUseCase.updateQuestion(command, principal.getId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Update(questionId));
+        QuestionCommand.Update command = new QuestionCommand.Update(questionId, request.title(), request.content());
+        Long updatedQuestionId = questionUpdateUseCase.updateQuestion(command, principal.getId());
+        return ResponseEntity.status(HttpStatus.CREATED).body(new Update(updatedQuestionId));
     }
 
-    @DeleteMapping
-    public ResponseEntity<?> deleteQuestion(@RequestBody QuestionRequest.Delete request,
+    @DeleteMapping("/{questionId}")
+    public ResponseEntity<?> deleteQuestion(@PathVariable Long questionId,
                                             @AuthenticationPrincipal UserPrincipal principal) {
-        QuestionCommand.Delete command = new Delete(request.questionId(), principal.getId());
+        QuestionCommand.Delete command = new Delete(questionId, principal.getId());
         questionDeleteUseCase.deleteQuestion(command);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -67,7 +68,7 @@ public class QuestionController {
         return ResponseEntity.status(HttpStatus.OK).body(questions) ;
     }
 
-    @GetMapping("{questionId}")
+    @GetMapping("/{questionId}")
     public ResponseEntity<QuestionSummary> findQuestion(@PathVariable Long questionId) {
         QuestionSummary questionSummary = questionFindUseCase.getQuestion(questionId);
         return ResponseEntity.status(HttpStatus.OK).body(questionSummary);

@@ -24,6 +24,7 @@ import stduy.ddd.application.question.usecase.command.QuestionCreateUseCase;
 import stduy.ddd.application.question.usecase.command.QuestionDeleteUseCase;
 import stduy.ddd.application.question.usecase.query.QuestionFindUseCase;
 import stduy.ddd.application.question.usecase.command.QuestionUpdateUseCase;
+import stduy.ddd.common.response.ApiResponse;
 import stduy.ddd.domain.user.UserPrincipal;
 
 @RestController
@@ -37,20 +38,20 @@ public class QuestionController {
     private final QuestionFindUseCase questionFindUseCase;
 
     @PostMapping("")
-    public ResponseEntity<Create> createQuestion(@RequestBody QuestionRequest.Create request,
-                                                 @AuthenticationPrincipal UserPrincipal principal) {
+    public ResponseEntity<ApiResponse<Create>> createQuestion(@RequestBody QuestionRequest.Create request,
+                                                      @AuthenticationPrincipal UserPrincipal principal) {
         QuestionCommand.Create command = new QuestionCommand.Create(request.title(), request.content());
         Long questionId = questionCreateUseCase.createQuestion(command, principal.getId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Create(questionId));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(new Create(questionId)));
     }
 
     @PatchMapping("/{questionId}")
-    public ResponseEntity<Update> updateQuestion(@PathVariable Long questionId,
+    public ResponseEntity<ApiResponse<Update>> updateQuestion(@PathVariable Long questionId,
                                                  @RequestBody QuestionRequest.Update request,
                                                  @AuthenticationPrincipal UserPrincipal principal) {
         QuestionCommand.Update command = new QuestionCommand.Update(questionId, request.title(), request.content());
         Long updatedQuestionId = questionUpdateUseCase.updateQuestion(command, principal.getId());
-        return ResponseEntity.status(HttpStatus.CREATED).body(new Update(updatedQuestionId));
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(new Update(updatedQuestionId)));
     }
 
     @DeleteMapping("/{questionId}")
@@ -62,15 +63,15 @@ public class QuestionController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<QuestionSummary>> findQuestions(@PageableDefault Pageable pageable,
+    public ResponseEntity<ApiResponse<Page<QuestionSummary>>> findQuestions(@PageableDefault Pageable pageable,
                                                                @RequestParam String keyword) {
         Page<QuestionSummary> questions = questionFindUseCase.getQuestions(pageable, keyword);
-        return ResponseEntity.status(HttpStatus.OK).body(questions) ;
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(questions));
     }
 
     @GetMapping("/{questionId}")
-    public ResponseEntity<QuestionSummary> findQuestion(@PathVariable Long questionId) {
+    public ResponseEntity<ApiResponse<QuestionSummary>> findQuestion(@PathVariable Long questionId) {
         QuestionSummary questionSummary = questionFindUseCase.getQuestion(questionId);
-        return ResponseEntity.status(HttpStatus.OK).body(questionSummary);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(questionSummary));
     }
 }

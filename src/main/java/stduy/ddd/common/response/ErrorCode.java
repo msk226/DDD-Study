@@ -11,6 +11,8 @@ public enum ErrorCode {
 
     ANSWER_NOT_FOUND(404, "답변을 찾을 수 없습니다."),
     QUESTION_NOT_FOUND(404, "질문을 찾을 수 없습니다."),
+    NOT_EXISTING_USER(404, "존재하지 않는 사용자입니다."),
+    WRONG_PASSWORD(401, "비밀번호가 일치하지 않습니다."),
 
 
     //"제목 또는 내용의 형식이 잘못되었습니다."

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.user.UserCommand.SignIn;
 import stduy.ddd.application.user.usecase.UserSignInUseCase;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 import stduy.ddd.domain.user.User;
 import stduy.ddd.domain.user.UserRepository;
 import stduy.ddd.domain.user.vo.Email;
@@ -25,11 +27,11 @@ public class UserSignInService implements UserSignInUseCase {
     public UserResponse.UserSignIn signIn(SignIn command) {
         // 1. 이메일로 유저 조회
         User user = userRepository.findByEmail(new Email(command.email()))
-                .orElseThrow(() -> new IllegalArgumentException("이메일 또는 비밀번호가 올바르지 않습니다."));
+                .orElseThrow(() -> new DomainException(ErrorCode.NOT_EXISTING_USER));
 
         // 2. 비밀번호 일치 여부 확인
         if (!passwordEncoder.matches(command.password(), user.getPassword().getPassword())) {
-            throw new IllegalArgumentException("이메일 또는 비밀번호가 올바르지 않습니다.");
+            throw new DomainException(ErrorCode.WRONG_PASSWORD);
         }
 
         // 3. 응답 객체 생성 (토큰 미포함 버전)

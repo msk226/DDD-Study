@@ -66,7 +66,7 @@ public class Answer {
         validateWriter(currentUserId);
 
         if (this.isDeleted) {
-            throw new IllegalArgumentException("이미 삭제 처리 된 답변입니다.");
+            throw new DomainException(ErrorCode.ANSWER_NOT_FOUND);
         }
 
         this.isDeleted = true;

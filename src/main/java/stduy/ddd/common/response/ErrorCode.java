@@ -9,7 +9,11 @@ public enum ErrorCode {
     INTERNAL_SERVER_ERROR(500, "알 수 없는 오류가 발생했습니다."),
 
     //"제목 또는 내용의 형식이 잘못되었습니다."
-    CONTENT_FORMAT_ERROR(400, "제목 또는 내용의 형식이 잘못되었습니다."), ;
+    CONTENT_FORMAT_ERROR(400, "제목 또는 내용의 형식이 잘못되었습니다."),
+    // 이미 삭제 된 답변
+    ANSWER_NOT_FOUND(404, "답변을 찾을 수 없습니다."),
+    // 이미 삭제 된 질문
+    QUESTION_NOT_FOUND(404, "질문을 찾을 수 없습니다."),;
 
     private final int status;
     private final String message;

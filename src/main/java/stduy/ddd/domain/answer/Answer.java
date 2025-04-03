@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 import stduy.ddd.domain.answer.vo.Content;
 import stduy.ddd.domain.question.Question;
 import stduy.ddd.domain.question.vo.Title;
@@ -51,7 +53,7 @@ public class Answer {
 
     public void validateWriter(Long currentUserId) {
         if (!this.writer.getId().equals(currentUserId)) {
-            throw new IllegalArgumentException("해당 답변을 수정할 권한이 없습니다.");
+            throw new DomainException(ErrorCode.FORBIDDEN);
         }
     }
 

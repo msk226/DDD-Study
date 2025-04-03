@@ -11,6 +11,8 @@ import jakarta.persistence.ManyToOne;
 import java.time.LocalDateTime;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 import stduy.ddd.domain.question.vo.Content;
 import stduy.ddd.domain.question.vo.Title;
 import stduy.ddd.domain.user.User;
@@ -51,7 +53,7 @@ public class Question {
 
     public void validateWriter(Long userId) {
         if (!this.writer.getId().equals(userId)) {
-            throw new IllegalArgumentException("해당 질문을 수정할 권한이 없습니다.");
+            throw new DomainException(ErrorCode.FORBIDDEN);
         }
     }
     public void updateQuestion(Title title, Content content) {

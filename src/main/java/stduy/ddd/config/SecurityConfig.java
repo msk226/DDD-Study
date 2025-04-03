@@ -42,13 +42,6 @@ public class SecurityConfig {
 
                 // 엔드포인트 접근 제한
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                "/swagger-ui/**",
-                                "/v3/api-docs/**",
-                                "/swagger-resources/**",
-                                "/swagger-ui.html",
-                                "/webjars/**"
-                        ).permitAll()
                         .requestMatchers("/api/users/sign-up", "/api/users/sign-in").permitAll()
                         .anyRequest().authenticated()
                 );

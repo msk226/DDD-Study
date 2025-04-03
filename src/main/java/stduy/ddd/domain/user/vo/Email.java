@@ -6,6 +6,8 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 
 @Getter
 @Embeddable
@@ -18,7 +20,7 @@ public class Email {
 
     public Email (String email) {
         if (!email.matches("^[\\w-.]+@[\\w-]+\\.[a-zA-Z]{2,}$")) {
-            throw new IllegalArgumentException("이메일 형식이 올바르지 않습니다.");
+            throw new DomainException(ErrorCode.INVALID_EMAIL);
         }
         this.email = email;
     }

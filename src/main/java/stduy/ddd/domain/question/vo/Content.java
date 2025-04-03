@@ -5,6 +5,8 @@ import jakarta.persistence.Embeddable;
 import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 
 @Embeddable
 @EqualsAndHashCode
@@ -16,7 +18,7 @@ public class Content {
 
     public Content (String content) {
         if (content == null || content.length() > 300) {
-            throw new IllegalArgumentException("제목 또는 내용의 형식이 잘못되었습니다.");
+            throw new DomainException(ErrorCode.CONTENT_FORMAT_ERROR);
         }
         this.content = content;
     }

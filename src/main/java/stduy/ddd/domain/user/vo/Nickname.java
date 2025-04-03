@@ -6,6 +6,8 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 
 @Getter
 @Embeddable
@@ -18,7 +20,7 @@ public class Nickname {
 
     public Nickname(String value) {
         if (value == null || value.length() < 2 || value.length() > 15 || value.matches(".*[!@#$%^&*()].*")) {
-            throw new IllegalArgumentException("닉네임은 2~15자의 특수문자 없는 문자열이어야 합니다.");
+            throw new DomainException(ErrorCode.INVALID_NICKNAME);
         }
         this.nickname = value;
     }

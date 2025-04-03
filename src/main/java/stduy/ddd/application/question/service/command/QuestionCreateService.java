@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.question.QuestionCommand.Create;
 import stduy.ddd.application.question.usecase.command.QuestionCreateUseCase;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 import stduy.ddd.domain.question.Question;
 import stduy.ddd.domain.question.repository.QuestionRepository;
 import stduy.ddd.domain.question.vo.Content;
@@ -23,7 +25,7 @@ public class QuestionCreateService implements QuestionCreateUseCase {
     @Override
     public Long createQuestion(Create command, Long userId) {
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 회원입니다."));
+                .orElseThrow(() -> new DomainException(ErrorCode.USER_NOT_FOUND));
 
         Question question = Question.create(
                 new Title(command.title()),

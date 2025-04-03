@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.answer.AnswerCommand.Create;
 import stduy.ddd.application.answer.usecase.AnswerCreateUseCase;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 import stduy.ddd.domain.answer.Answer;
 import stduy.ddd.domain.answer.AnswerRepository;
 import stduy.ddd.domain.answer.vo.Content;
@@ -26,10 +28,10 @@ public class AnswerCreateService implements AnswerCreateUseCase {
     public Long createAnswer(Create command) {
 
         User writer = userRepository.findById(command.userId())
-                .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 회원입니다."));
+                .orElseThrow(() -> new DomainException(ErrorCode.USER_NOT_FOUND));
 
         Question question = questionRepository.findById(command.questionId())
-                .orElseThrow(() -> new IllegalArgumentException("존재 하지 않는 질문입니다."));
+                .orElseThrow(() -> new DomainException(ErrorCode.QUESTION_NOT_FOUND));
 
         Answer answer = Answer.of(new Content(command.content()), writer, question);
 

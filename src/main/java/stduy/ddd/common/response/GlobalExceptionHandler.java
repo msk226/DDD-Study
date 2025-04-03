@@ -12,14 +12,14 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(DomainException.class)
     public ResponseEntity<ApiResponse<?>> handleDomainException(DomainException e, HttpServletRequest request) {
-        log.error("DomainException occurred", e);
+        log.error("DomainException occurred : {}", e.getMessage());
         return ResponseEntity.status(e.getErrorCode().getStatus())
                 .body(ApiResponse.fail(e.getErrorCode()));
     }
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ApiResponse<?>> handleUnexpected(Exception e, HttpServletRequest request) {
-        log.error("Exception occurred", e);
+        log.error("Exception occurred : {} ", e.getMessage());
         return ResponseEntity.internalServerError()
                 .body(ApiResponse.fail(ErrorCode.INTERNAL_SERVER_ERROR));
     }

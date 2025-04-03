@@ -7,6 +7,8 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 
 @Getter
 @Embeddable
@@ -19,7 +21,7 @@ public class Password {
 
     public Password (String password, PasswordEncoder encoder) {
         if (password.length() < 8 || !password.matches(".*[!@#$%^&*()].*")) {
-            throw new IllegalArgumentException("비밀번호는 8자 이상, 특수문자를 포함해야 합니다.");
+            throw new DomainException(ErrorCode.INVALID_PASSWORD);
         }
 
         this.password = encoder.encode(password);

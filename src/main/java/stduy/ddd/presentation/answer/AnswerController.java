@@ -15,6 +15,7 @@ import stduy.ddd.application.answer.AnswerCommand;
 import stduy.ddd.application.answer.usecase.AnswerCreateUseCase;
 import stduy.ddd.application.answer.usecase.AnswerDeleteUseCase;
 import stduy.ddd.application.answer.usecase.AnswerUpdateUseCase;
+import stduy.ddd.common.response.ApiResponse;
 import stduy.ddd.domain.user.UserPrincipal;
 
 @RestController
@@ -27,21 +28,21 @@ public class AnswerController {
     private final AnswerDeleteUseCase answerDeleteUseCase;
 
     @PostMapping
-    public ResponseEntity<?> createAnswer(@RequestBody AnswerRequest.Create request,
-                                          @AuthenticationPrincipal UserPrincipal principal) {
+    public ResponseEntity<ApiResponse<Long>> createAnswer(@RequestBody AnswerRequest.Create request,
+                                                    @AuthenticationPrincipal UserPrincipal principal) {
         AnswerCommand.Create command = new AnswerCommand.Create(request.content(), principal.getId(), request.questionId());
         Long answerId = answerCreateUseCase.createAnswer(command);
-        return ResponseEntity.status(HttpStatus.CREATED).body(answerId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(answerId));
     }
 
 
     @PatchMapping("/{answerId}")
-    public ResponseEntity<?> updateAnswer(@RequestBody AnswerRequest.Update request,
+    public ResponseEntity<ApiResponse<Long>> updateAnswer(@RequestBody AnswerRequest.Update request,
                                           @PathVariable Long answerId,
                                           @AuthenticationPrincipal UserPrincipal principal) {
         AnswerCommand.Update command = new AnswerCommand.Update(request.content(), principal.getId(), answerId);
         Long updatedAnswerId = answerUpdateUseCase.updateAnswer(command);
-        return ResponseEntity.status(HttpStatus.OK).body(updatedAnswerId);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(updatedAnswerId));
     }
 
     @DeleteMapping("/{answerId}")

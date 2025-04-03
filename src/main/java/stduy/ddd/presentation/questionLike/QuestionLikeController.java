@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import stduy.ddd.application.questionLike.QuestionLikeCommand;
 import stduy.ddd.application.questionLike.QuestionLikeCommand.Like;
 import stduy.ddd.application.questionLike.usecase.QuestionLikeUseCase;
+import stduy.ddd.common.response.ApiResponse;
 import stduy.ddd.domain.user.UserPrincipal;
 import stduy.ddd.presentation.questionLike.QuestionLikeResponse.QuestionLike;
 
@@ -23,11 +24,11 @@ public class QuestionLikeController {
     private final QuestionLikeUseCase questionLikeUseCase;
 
     @PostMapping("{questionId}/likes")
-    public ResponseEntity<QuestionLikeResponse.QuestionLike> toggleQuestionLike(@PathVariable Long questionId,
-                                                                                @AuthenticationPrincipal UserPrincipal principal) {
+    public ResponseEntity<ApiResponse<QuestionLikeResponse.QuestionLike>> toggleQuestionLike(@PathVariable Long questionId,
+                                                                                            @AuthenticationPrincipal UserPrincipal principal) {
         QuestionLikeCommand.Like command = new Like(questionId, principal.getId());
         boolean isLiked = questionLikeUseCase.toggleLike(command);
 
-        return ResponseEntity.status(HttpStatus.OK).body(new QuestionLikeResponse.QuestionLike(isLiked));
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(new QuestionLikeResponse.QuestionLike(isLiked)));
     }
 }

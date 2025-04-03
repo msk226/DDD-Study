@@ -12,6 +12,7 @@ import stduy.ddd.application.user.UserCommand.SignIn;
 import stduy.ddd.application.user.UserCommand.SignUp;
 import stduy.ddd.application.user.usecase.UserSignInUseCase;
 import stduy.ddd.application.user.usecase.UserSignUpUseCase;
+import stduy.ddd.common.response.ApiResponse;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,22 +23,22 @@ public class UserController {
     private final UserSignInUseCase userSignInUseCase;
 
     @PostMapping("/sign-up")
-    public ResponseEntity<Long> signUp(@RequestBody UserRequest.SignUp request) {
+    public ResponseEntity<ApiResponse<Long>> signUp(@RequestBody UserRequest.SignUp request) {
         UserCommand.SignUp command = new SignUp(
                 request.email(), request.password(), request.nickname(), request.phoneNumber(), request.name()
         );
 
         Long userId = userSignUpUseCase.create(command);
-        return ResponseEntity.status(HttpStatus.CREATED).body(userId);
+        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(userId));
     }
 
     @PostMapping("/sign-in")
-    public ResponseEntity<UserResponse.UserSignIn> signIn(@RequestBody UserRequest.SignIn request) {
+    public ResponseEntity<ApiResponse<UserResponse.UserSignIn>> signIn(@RequestBody UserRequest.SignIn request) {
         UserCommand.SignIn command = new SignIn(
                 request.email(), request.password());
 
          UserResponse.UserSignIn signIn = userSignInUseCase.signIn(command);
-        return ResponseEntity.status(HttpStatus.OK).body(signIn);
+        return ResponseEntity.status(HttpStatus.OK).body(ApiResponse.success(signIn));
     }
 
 }

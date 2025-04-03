@@ -50,6 +50,13 @@ public class QuestionQueryRepositoryImpl implements QuestionQueryRepository {
                 .leftJoin(question.writer, user)
                 .leftJoin(questionLike).on(questionLike.question.eq(question))
                 .where(condition)
+                .groupBy(
+                        question.id,
+                        question.title.title,
+                        question.content.content,
+                        user.nickname.nickname,
+                        question.createdAt
+                )
                 .orderBy(question.createdAt.desc())
                 .offset(pageable.getOffset())
                 .limit(pageable.getPageSize())

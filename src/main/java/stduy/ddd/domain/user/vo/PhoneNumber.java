@@ -6,6 +6,8 @@ import lombok.AccessLevel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 
 @Getter
 @Embeddable
@@ -18,7 +20,7 @@ public class PhoneNumber {
 
     public PhoneNumber (String phoneNumber) {
         if (phoneNumber == null || !phoneNumber.matches("^\\d{10,11}$")) {
-            throw new IllegalArgumentException("전화번호는 10~11자리 숫자만 입력 가능합니다.");
+            throw new DomainException(ErrorCode.INVALID_PHONE_NUMBER);
         }
         this.phoneNumber = phoneNumber;
     }

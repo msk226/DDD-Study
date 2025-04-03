@@ -6,7 +6,10 @@ public enum ErrorCode {
     USER_NOT_FOUND(404, "사용자를 찾을 수 없습니다."),
     UNAUTHORIZED(401, "로그인이 필요합니다."),
     FORBIDDEN(403, "접근 권한이 없습니다."),
-    INTERNAL_SERVER_ERROR(500, "알 수 없는 오류가 발생했습니다.");
+    INTERNAL_SERVER_ERROR(500, "알 수 없는 오류가 발생했습니다."),
+
+    //"제목 또는 내용의 형식이 잘못되었습니다."
+    CONTENT_FORMAT_ERROR(400, "제목 또는 내용의 형식이 잘못되었습니다."), ;
 
     private final int status;
     private final String message;

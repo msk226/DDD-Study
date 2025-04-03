@@ -14,6 +14,9 @@ public enum ErrorCode {
     NOT_EXISTING_USER(404, "존재하지 않는 사용자입니다."),
     WRONG_PASSWORD(401, "비밀번호가 일치하지 않습니다."),
 
+    ALREADY_USING_EMAIL(409, "이미 사용중인 이메일입니다."),
+    ALREADY_USING_NICKNAME(409, "이미 사용중인 닉네임입니다."),
+
 
     //"제목 또는 내용의 형식이 잘못되었습니다."
     CONTENT_FORMAT_ERROR(400, "제목 또는 내용의 형식이 잘못되었습니다."),

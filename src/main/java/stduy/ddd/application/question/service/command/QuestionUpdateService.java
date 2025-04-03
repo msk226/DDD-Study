@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.question.QuestionCommand.Update;
 import stduy.ddd.application.question.usecase.command.QuestionUpdateUseCase;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 import stduy.ddd.domain.question.Question;
 import stduy.ddd.domain.question.repository.QuestionRepository;
 import stduy.ddd.domain.question.vo.Content;
@@ -20,7 +22,7 @@ public class QuestionUpdateService implements QuestionUpdateUseCase {
     @Override
     public Long updateQuestion(Update command, Long userId) {
         Question question = questionRepository.findById(command.questionId())
-                .orElseThrow(() -> new IllegalArgumentException("질문이 존재하지 않습니다."));
+                .orElseThrow(() -> new DomainException(ErrorCode.QUESTION_NOT_FOUND));
 
         question.validateWriter(userId);
 

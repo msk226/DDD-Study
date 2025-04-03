@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import stduy.ddd.application.question.QuestionCommand;
 import stduy.ddd.application.question.usecase.command.QuestionDeleteUseCase;
+import stduy.ddd.common.response.DomainException;
+import stduy.ddd.common.response.ErrorCode;
 import stduy.ddd.domain.question.Question;
 import stduy.ddd.domain.question.repository.QuestionRepository;
 
@@ -18,7 +20,7 @@ public class QuestionDeleteService implements QuestionDeleteUseCase {
     @Override
     public void deleteQuestion(QuestionCommand.Delete command) {
         Question question = questionRepository.findById(command.questionId())
-                .orElseThrow(() -> new IllegalArgumentException("질문이 존재하지 않습니다."));
+                .orElseThrow(() ->new DomainException(ErrorCode.QUESTION_NOT_FOUND));
 
         question.delete(command.userId());
     }
